@@ -1,0 +1,20 @@
+# Placeholder https://github.com/orgs/jiashu/projects/2 is replaced by scripts/bootstrap-smartcity-demo.sh
+name: Sync tracked work to SmartCity Master Board
+
+on:
+  issues:
+    types: [opened, reopened, labeled]
+  pull_request:
+    types: [opened, reopened, labeled]
+
+jobs:
+  add-to-project:
+    name: Add labeled issues and PRs to org project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: https://github.com/orgs/jiashu/projects/2
+          github-token: ${{ secrets.CENTRAL_PROJECT_TOKEN }}
+          labeled: tracked
+          label-operator: OR
